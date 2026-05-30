@@ -33,7 +33,8 @@ How can survey responses be reduced into meaningful consumer segments for market
 ## Files
 
 - `consumer_segmentation_pca.Rmd` - source analysis.
-- `assets/consumer_segmentation_pca_report.docx` - knitted report.
+- `assets/consumer_segmentation_pca_completed_report.pdf` - completed knitted report.
+- `assets/consumer_segmentation_pca_completed_report.docx` - editable completed report.
 
 ## Portfolio Note
 
