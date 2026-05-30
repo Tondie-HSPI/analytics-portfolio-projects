@@ -1,7 +1,7 @@
 ---
-title: "Assignment 3: Product line pricing"
-author: "Ali Goli"
-date: "Spring B 2026, MKT 472"
+title: "Product Line Pricing and Elasticity Analysis"
+author: "Tondreka Robles"
+date: "Portfolio Version"
 output: pdf_document
 urlcolor: blue
 graphics: yes
@@ -22,7 +22,7 @@ Your marketing-analytic consulting task is to conduct a base pricing analysis fo
 3. How do you evaluate the current pricing tactics? Do you recommend
 changes?
 
-You have access to scanner data in the laundry detergent category across 86 stores of a retail chain in Chicago. The data are in the file `Detergent.RData` (the file is available on Blackboard). The data include weekly sales and price information for three products --- Tide 128 oz, Tide 64 oz, Wisk 64 oz --- across the 86 stores. The data are available for up to 300 weeks (the exact number of weeks included in the data varies across stores). The variables in the data set are:
+This analysis uses scanner data in the laundry detergent category across 86 stores of a retail chain in Chicago. The source data are omitted from this public portfolio version. The data include weekly sales and price information for three products: Tide 128 oz, Tide 64 oz, and Wisk 64 oz. The data are available for up to 300 weeks, with the exact number of weeks varying by store. The variables in the data set are:
 
 -------------   -----------------------------------------------------
 `store`         Store id number
@@ -123,10 +123,3 @@ Hint 2: To solve for questions Q6.f and Q6.g, you can take one of the two follow
 a. What is the extent of cannibalization within the Tide product line? (0.5 points)
 b. Does Tide face a competitive threat from Wisk? (0.5 points)
 c. How do you evaluate the current pricing tactics? Do you recommend changes? (0.5 points)
-
-## Instructions
-1. Late assignments will automatically receive a zero. 
-2. The points for each question are shown next to it. The total points is 20 points.
-3. Please submit your knitted pdf or word document. I have posted a template that gives you the Table format for Q1 and Q6 along with this assignment. It is called `Assignment3Template.Rmd` and it knits to word. 
-4. If you have any questions or need any clarifications on the assignment, please post on your question on the discussion board for this assignment. I or the TA will try to answer it as soon as possible. If you see a question from another student that you know the answer to, please feel free to chip in.
- 

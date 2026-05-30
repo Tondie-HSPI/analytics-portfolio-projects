@@ -1,7 +1,7 @@
 ---
-title: "Assignment 5: Effect of ad-variety and session-level history on customer response to mobile advertising"
+title: "Mobile Ad Click Prediction and ROI Targeting"
 author: "Tondreka Robles"
-date: "Spring B 2026, MKT 472"
+date: "Portfolio Version"
 output: word_document
 ---
 

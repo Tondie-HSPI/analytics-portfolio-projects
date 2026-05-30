@@ -1,7 +1,7 @@
 ---
-title: 'Assignment 1: Consumer Segmentation using PCA'
-author: "Ali Goli"
-date: "Spring B 2026, MKT 472"
+title: "Consumer Segmentation using PCA"
+author: "Tondreka Robles"
+date: "Portfolio Version"
 output:
   word_document: default
   pdf_document: default
@@ -140,13 +140,4 @@ Segment 3 (Low Service Expectations): This segment scores low on High Service Ex
 I believe Segment 1 is the most profitable segment. These consumers shop frequently at discount stores, are motivated by value (X4 and X5), and remain loyal as long as they receive basic respectful service (X1 and X3). Their combination of high shopping frequency and reasonable service expectations makes them the most reliable and consistent source of revenue. Segment 3, while large, is highly price sensitive and unlikely to generate strong margins. Segment 2, despite their willingness to spend more per visit, shops infrequently and selectively, limiting their overall profitability. Assuming the data is representative, Segment 1 accounts for approximately 8 out of 30 respondents, representing 27% of the market.
 
 
-\end{enumerate}
-
-# Instructions
-\begin{enumerate}
-\item Late assignments will automatically receive zero.
-\item The points for each question are shown next to it. The total is 15 points
-\item This is a group assignment. Only one person from the group should submit the assignment, but please list the names of all the group members in the first page of your submission.
-\item You are expected to write up the assignment using R Markdown (in the style of the handouts you were given for the in-class work). Please answer each question one by one. For each question, show the R commands you used and then briefly present any discussion/text that you want below it. Please submit the .Rmd file and the ‘knitted’ word document. You do not need to submit any data files. 
-\item If you have any questions or need any clarifications on the assignment, please post on your question on the discussion board for this assignment. I will try to answer it as soon as possible. If you see a question from another student that you know the answer to, please feel free to chip in. 
 \end{enumerate}

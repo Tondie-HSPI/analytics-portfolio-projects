@@ -1,7 +1,7 @@
 ---
-title: 'Assignment 4: Promotion Planning'
-author: "Ali Goli"
-date: "Spring B 2026"
+title: "Promotion ROI Analysis"
+author: "Tondreka Robles"
+date: "Portfolio Version"
 output:
   word_document: default
   pdf_document:
@@ -200,13 +200,3 @@ In order to estimate baseline sales, use the regression estimates and the regula
   a. Based on your analysis in Q4, discuss the profitability of each of the three promotions at both the accounts. Which promotions are profitable and why? (1 point)
   
   b. To what extent is the profitability of these promotions undermined by retailers' forward buying behavior? To answer this question, redo the analysis in Q4 under the assumption you can eliminate forward buying. Does that change the profitability of previously unprofitable promotions? If so, for which promotions and to what extent? (To perform the analysis for this question, use the second sheet (`ROI_Q5`) in the excel spreadsheet `Part2_HellmansROI.xlxs`.) (1 point)
-
-\section*{Instructions}
-1. Late assignments will automatically receive a zero. 
-2. The points for each question are shown next to it. The total points for the assignment is 15.
-3. Please submit your -- (1) Rmarkdown document, (2) the knitted pdf or word document that shows the answers for each question, and (3) Updated version of `Part1_Promotion_Planning.xlxs` with a new sheet that shows the answer to Q4 in Part I, and (4) completed excel document `Part2_HellmansROI` with the answers for Q3, Q4, and Q5 of Part II. 
-4. If you have any questions or need any clarifications on the assignment, please post on your question on the discussion board for this assignment. I will try to answer it as soon as possible. If you see a question from another student that you know the answer to, please feel free to chip in.
-
-
-
-  
