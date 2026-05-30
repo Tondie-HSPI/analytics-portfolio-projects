@@ -34,8 +34,7 @@ How should a brand evaluate cannibalization, competitive threat, and pricing cha
 ## Files
 
 - `product_pricing_elasticity.Rmd` - source analysis.
-- `assets/product_pricing_elasticity_report.pdf` - knitted report.
 
 ## Portfolio Note
 
-The source data are not included. This repository is intended to demonstrate pricing analytics, model interpretation, and business recommendation skills.
+The source data and original knitted course report are not included. This repository is intended to demonstrate pricing analytics, model interpretation, and business recommendation skills.
