@@ -22,6 +22,12 @@ Estimates own-price and cross-price elasticities to analyze cannibalization, com
 
 Folder: `portfolio-projects/product-pricing-elasticity-r`
 
+### Multi-Product Demand and Profitability Analysis in R
+
+Uses an elasticity matrix, quantity-change functions, profit ratios, and break-even marginal cost analysis to evaluate whether coordinated price changes are profitable.
+
+Folder: `portfolio-projects/multiproduct-profitability-analysis-r`
+
 ### Consumer Segmentation with PCA in R
 
 Uses principal component analysis and consumer mapping to identify interpretable market segments from survey response data.

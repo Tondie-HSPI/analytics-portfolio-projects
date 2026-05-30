@@ -1,0 +1,223 @@
+﻿---
+title: "Multi-Product Demand and Profitability Analysis"
+author: "Tondreka Robles"
+date: "Portfolio Version"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Overview
+This project evaluates pricing and profitability for a three-product category using own-price and cross-price elasticities. The scenario tests how a 5% price increase for product 1, no price change for product 2, and a 15% price cut for product 3 affect quantity and profit.
+
+The market has three products sold by different firms: 1, 2, and 3. Marginal costs are $C_1 = 0.5, C_2 = 0.75, C_3 = 0.9$, and the retail margin for all products is 10\%. Denote the prices of the three products as $P_1, P_2, P_3$. The own and cross price elasticities for the three products can be specified using the following demand system:
+
+$$Q_1 = A_1 P_1^{-2.5} P_2^{1.5} P_3^{1.2}$$
+$$ Q_2 = A_2 P_1^{0.7} P_2^{-1.5} P_3^{0.5}$$
+$$Q_3 = A_3 P_1^{0.7} P_2^{0.4} P_3^{-1.2}$$
+
+Further, the base prices of three products are given as: $P_1 = \$2$, $P_2 = \$1.75$ and $P_3 = \$1.5$. Please answer the following questions based on this information. (Note: You are not given information on $A_1, A_2$, and $A_3$.)
+
+# Questions
+
+   1. What are the own price elasticites of the three products? (0.5 points)
+   
+   The own-price elasticity is the exponent on each productâ€™s own price in the demand function.
+
+Product 1: -2.5
+Product 2: -1.5
+Product 3: -1.2
+
+
+   2. Write down a matrix of price elasticities. (1 point)
+```{r}
+elasticity_matrix <- matrix(c(
+  -2.5, 1.5, 1.2,
+  0.7, -1.5, 0.5,
+  0.7, 0.4, -1.2
+), nrow = 3, byrow = TRUE)
+
+elasticity_matrix
+
+```
+   
+  
+
+   3. Now assume that product 1 increases its price by $\gamma_1 = 5\%$, product 2 keeps its price constant ($\gamma_2 = 0$) and product 3 reduces its price by $\gamma_3 = 15\%$. Calculate the ratio of new quantity to the old quantity for each of the three products, i.e., $\frac{Q_{11}}{Q_{10}}, \frac{Q_{21}}{Q_{20}}, \frac{Q_{31}}{Q_{30}}$.
+   
+   a. First, do this using a calculator. Please show the formulae used and the steps in your calculation. (1.5 points)
+   
+```{r}
+g1 <- 0.05
+g2 <- 0
+g3 <- -0.15
+
+Q1_ratio <- (1+g1)^(-2.5) * (1+g2)^(1.5) * (1+g3)^(1.2)
+Q2_ratio <- (1+g1)^(0.7) * (1+g2)^(-1.5) * (1+g3)^(0.5)
+Q3_ratio <- (1+g1)^(0.7) * (1+g2)^(0.4) * (1+g3)^(-1.2)
+
+Q1_ratio
+Q2_ratio
+Q3_ratio
+```
+   
+      
+      b. Interpret and discuss why each of these changes is happening. Which products see an increase in demand and which see a decrease (and why)? (1.5 points)
+      
+Product 1
+
+Demand for product 1 goes down. Its price increases by 5%, and since its own-price elasticity is strongly negative (-2.5), that alone reduces demand. On top of that, product 3 becomes cheaper by 15%. Because the cross-price elasticity between product 1 and product 3 is positive (1.2), a lower price for product 3 pulls demand away from product 1. Overall, both effects work in the same direction, so demand drops noticeably.
+
+Product 2
+
+Demand for product 2 decreases slightly. Its own price doesnâ€™t change, so thereâ€™s no direct effect from that. When product 1â€™s price increases, it should help product 2 a bit since the cross-price elasticity is positive (0.7). But product 3â€™s price drops, and since product 2 also has a positive cross-price elasticity with product 3 (0.5), product 3 becomes more attractive and takes demand away. The impact from product 3 is stronger overall, so demand for product 2 ends up decreasing a little.
+
+Product 3
+
+Demand for product 3 increases. Its price drops by 15%, and because its own-price elasticity is negative (-1.2), that leads to higher demand. Also, product 1 becomes more expensive, and since the cross-price elasticity is positive (0.7), that shifts even more demand toward product 3. Both effects reinforce each other, so demand increases significantly.
+
+Summary
+Product 1: demand decreases
+Product 2: demand decreases slightly
+Product 3: demand increases
+
+      
+      c. Write a function that takes as input -- (1) the price changes for the three products ($\gamma_1, \gamma_2, \gamma_3$) and (2) price elasticities and cross price elasticties for all the products, and gives as output the the ratio of the new to old quantities for the three products: $\frac{Q_{11}}{Q_{10}},\frac{Q_{21}}{Q_{20}},\frac{Q_{31}}{Q_{30}}$. (2 points)
+      
+```{r}
+quantity_change_function <- function(gamma, elasticity_matrix) {
+  q1 <- (1 + gamma[1])^(elasticity_matrix[1,1]) *
+        (1 + gamma[2])^(elasticity_matrix[1,2]) *
+        (1 + gamma[3])^(elasticity_matrix[1,3])
+  
+  q2 <- (1 + gamma[1])^(elasticity_matrix[2,1]) *
+        (1 + gamma[2])^(elasticity_matrix[2,2]) *
+        (1 + gamma[3])^(elasticity_matrix[2,3])
+  
+  q3 <- (1 + gamma[1])^(elasticity_matrix[3,1]) *
+        (1 + gamma[2])^(elasticity_matrix[3,2]) *
+        (1 + gamma[3])^(elasticity_matrix[3,3])
+  
+  return(c(q1, q2, q3))
+}
+```
+      
+      
+      d. Evaluate the function at the values of $\gamma_1, \gamma_2, \gamma_3$ specified earlier and store the results in an array named `quantitychange`. Check if the results from the function are the same as that in Step 3a. (1 point)
+      
+```{r}
+gamma <- c(0.05, 0, -0.15)
+
+elasticity_matrix <- matrix(c(
+  -2.5, 1.5, 1.2,
+  0.7, -1.5, 0.5,
+  0.7, 0.4, -1.2
+), nrow = 3, byrow = TRUE)
+
+quantitychange <- quantity_change_function(gamma, elasticity_matrix)
+
+quantitychange
+```
+      
+ 
+   4. Using the same price changes as in the previous question, calculate what happens to the profits of the three products. Specifically:
+    a. Calculate (using a calculator) the ratio of the new profit to old profit for all three products, i.e.,         $\frac{\pi_{11}}{\pi_{10}}, \frac{\pi_{21}}{\pi_{20}}, \frac{\pi_{31}}{\pi_{30}}$, and derive the percentage increase or decrease in profit for all three products. Please show the formulae used and the steps in your calculation. (1.5 points)
+    
+```{r}
+r <- 0.10
+
+P1 <- 2
+P2 <- 1.75
+P3 <- 1.5
+
+C1 <- 0.5
+C2 <- 0.75
+C3 <- 0.9
+
+Q1_ratio <- quantitychange[1]
+Q2_ratio <- quantitychange[2]
+Q3_ratio <- quantitychange[3]
+
+profit1_ratio <- (((1-r)*(P1*(1+0.05)) - C1) / ((1-r)*P1 - C1)) * Q1_ratio
+profit2_ratio <- (((1-r)*(P2*(1+0.00)) - C2) / ((1-r)*P2 - C2)) * Q2_ratio
+profit3_ratio <- (((1-r)*(P3*(1-0.15)) - C3) / ((1-r)*P3 - C3)) * Q3_ratio
+
+profit_ratios_calculator <- c(profit1_ratio, profit2_ratio, profit3_ratio)
+profit_percent_change <- (profit_ratios_calculator - 1) * 100
+
+profit_ratios_calculator
+profit_percent_change
+```
+    
+    
+    b. Interpret and discuss why each of these changes is happening. Which products benefit from the price changes and why (or why not)? Is product 3's price cut justified? (1.5 points)
+    
+Product 1
+
+Profit for product 1 goes down even though the price increased. The higher price helps profit per unit a little, but demand drops too much. Since quantity falls pretty sharply, the gain from charging more is not enough to make up for the lost sales. So overall, profit decreases.
+
+Product 2
+
+Profit for product 2 also goes down. Its price stays the same, so there is no improvement in profit per unit. Using the corrected Q3 quantity ratio, product 2's quantity ratio is about 0.954, so its profit falls by about 4.6%.
+
+Product 3
+
+Profit for product 3 drops the most. Its lower price does increase demand, but the price cut hurts profit per unit a lot. Since the marginal cost is already fairly high relative to the original price, cutting the price leaves much less profit on each unit sold. The increase in quantity is not large enough to make up for that, so total profit falls significantly.
+
+Is product 3â€™s price cut justified?
+
+Based on these numbers, no. Even though demand increases, profit still drops by a lot. That means the extra sales do not make up for the lower profit earned on each unit.
+
+    c. Now write a function that takes as input the price change percentages ($\gamma_1, \gamma_2, \gamma_3$), the price and price elasticities for the three products, the retail margin ($r$), and the marginal costs $C_1, C_2, C_3$ and gives as output the ratios of new to old profits: $\frac{\pi_{11}}{\pi_{10}},\frac{\pi_{21}}{\pi_{20}},\frac{\pi_{31}}{\pi_{30}}$. (\textbf{Note:} You can also simplify the function by simply using the vector `quantitychange` that you stored in Question 3 and thereby avoid using price elasticities in this function. This is not necessary, but you may find that this simplifies your function specification significantly. (2 points)
+    
+```{r}
+profit_change_function <- function(gamma, prices, costs, r, quantitychange) {
+  p1_ratio <- (((1-r) * prices[1] * (1 + gamma[1]) - costs[1]) /
+               ((1-r) * prices[1] - costs[1])) * quantitychange[1]
+  
+  p2_ratio <- (((1-r) * prices[2] * (1 + gamma[2]) - costs[2]) /
+               ((1-r) * prices[2] - costs[2])) * quantitychange[2]
+  
+  p3_ratio <- (((1-r) * prices[3] * (1 + gamma[3]) - costs[3]) /
+               ((1-r) * prices[3] - costs[3])) * quantitychange[3]
+  
+  return(c(p1_ratio, p2_ratio, p3_ratio))
+}
+```
+    
+    d. Evaluate the function at the values specified earlier and store the results in an array named `profitchange`. Check if the results from the function are the same as that from in Step 4a. (1 point)
+    
+```{r}
+gamma <- c(0.05, 0, -0.15)
+prices <- c(2, 1.75, 1.5)
+costs <- c(0.5, 0.75, 0.9)
+r <- 0.10
+
+profitchange <- profit_change_function(gamma, prices, costs, r, quantitychange)
+
+profitchange
+
+```
+Overall, all products experience a decline in profit, with product 3 showing the largest loss.
+
+   5. Can you calculate the higest marginal cost at which this price cut is justified for product 3? (1.5 point)
+   
+```{r}
+Q3_ratio <- quantitychange[3]
+
+P_old <- 1.5
+P_new <- 1.5 * 0.85
+r <- 0.10
+
+f <- function(C) {
+  ((1-r)*P_new - C) / ((1-r)*P_old - C) * Q3_ratio - 1
+}
+
+uniroot(f, c(0, 1))$root
+```
+Using the exact product 3 quantity ratio from Question 3, the highest marginal cost at which the price cut is justified for product 3 is approximately 0.3613. Since the current marginal cost is 0.9, which is much higher than this threshold, the price cut is not justified. In other words, product 3 would need a much lower marginal cost for the 15% price cut to break even.
+
