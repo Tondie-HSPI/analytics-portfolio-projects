@@ -1,0 +1,152 @@
+---
+title: 'Assignment 1: Consumer Segmentation using PCA'
+author: "Ali Goli"
+date: "Spring B 2026, MKT 472"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Overview
+A pilot survey was conducted of 30 individuals to understand their different attitudes towards discount stores (e.g., K-Mart), which usually come with low levels of service versus departmental stores (e.g., Macys) which come with higher levels of service. Respondents were asked their opinion on a 0-9 agree-disagree scale (where 0 indicates strongly disagree and 9 indicates strongly agree) on the following questions.
+\begin{enumerate}
+\item I never go back to a store that had treated me with disrespect.
+\item I find salespeople who fawn over me irritating, I just expect them to courteous.
+\item I have a lot of questions when I shop, I greatly appreciate a salesperson who is
+willing to spend time answering my questions.
+\item I care little for the fancy displays in departmental stores.
+\item Discount stores are much more of a bargain than departmental stores.
+\end{enumerate}
+
+The data for this study are provided in assg1.csv Using this data, answer the following questions.
+
+# Questions
+\begin{enumerate}
+\item Import, scale, and summarize the data in R. (1 point)
+
+```{r}
+data = read.csv("assg1.csv")
+data_scaled = scale(data[, 2:6])
+summary(data_scaled)
+```
+We scaled the data so that each variable has a mean of zero and standard deviation of one. This ensures that all five attitude variables are on equal footing before running PCA
+
+
+\item Present the matrix of correlations for the five variables (X1-X5) and plot the correlations. Explain (in words) your inferences based on this exploratory analysis. (1 point)
+
+```{r}
+#install.packages("corrplot")
+
+cor_matrix = cor(data_scaled)
+round(cor_matrix, 2)
+
+library(corrplot)
+par(cex = 0.65)
+corrplot(cor_matrix, method = "circle")
+```
+Questions 1 and 3 are positively correlated as they are both related to service at the store.
+
+Questions 4 and 5 are positively correlated  as they are related to preferring discount store due to shopping preference. Question to is aligned with These as it is related to the customer being wanting service at is more typical of a discount store.
+
+
+\item Perform PCA on the data and show the results (including the summary of the PCA and the matrix showing the relationship between the factors and original attributes). (1 point)
+
+```{r}
+pca_result = prcomp(data_scaled)
+summary(pca_result)
+pca_result$rotation
+```
+
+
+
+\item Write down the five equations that formally define relationship between the original attributes and the factors from the PCA. (1 point)
+
+X1 = -0.555(PC1) + 0.232(PC2) - 0.280(PC3) - 0.723(PC4) + 0.191(PC5)
+X2 = 0.571(PC1) + 0.212(PC2) - 0.183(PC3) - 0.462(PC4) - 0.618(PC5)
+X3 = -0.580(PC1) + 0.157(PC2) + 0.311(PC3) + 0.187(PC4) - 0.713(PC5)
+X4 = -0.017(PC1) + 0.686(PC2) - 0.561(PC3) + 0.461(PC4) + 0.041(PC5)
+X5 = 0.174(PC1) + 0.637(PC2) + 0.691(PC3) - 0.125(PC4) + 0.267(PC5)
+
+
+
+
+\item How many factors or principal components should we retain? Explain your decision. (1.5 points)
+
+
+```{r}
+plot(pca_result, type = 'l')
+```
+
+The scree plot shows a clear kink after the second component, where the line flattens out sharply. Using the kink rule, we retain two components. The second criteria confirms this — only PC1 and PC2 have values above 1. Together, PC1 and PC2 explain 90.5% of the total variance in the data, which is sufficient to represent the underlying structure of the five attitude variables
+
+
+\item Can you think of intuitive names for the first and second factors? What do these factors represent? Explain how you arrived at them. Hint: Use the equations that quantify the relationship between the original attributes and the factors from the PCA (from answer to Question 4) and focus on strong correlations. (2 points)
+
+For the First factor the name would be High Service Expectations. PC1 has its srongest loadings on X1 (-0.555), X2 (0.571) and X3 (-0.580). 
+
+X1 states "I never go back to a store that treated me with disrespect" and X3 states "I greatly appreciate a salesperson who answers my questions"  both reflect high expectations for service quality, and both load negatively on PC1
+
+The Factor 2 would be Value shopper. PC2 has its strongest loadings on X4 (0.686) and X5 (0.637). 
+
+X4 states "I care little for fancy displays in department stores" and X5 states "Discount stores are much more of a bargain than department stores" both reflect a preference for value over experience. Both load positively on PC2, meaning consumers with a high PC2 score are motivated primarily by price and value. 
+
+
+
+\item Now plot all the consumers on a two-dimensional map based on the first two principal components. Label the x and y-axis using the names from your answer to the previous question. (1.5 points)
+
+```{r}
+# Extract consumer scores on the first two principal components
+scores = pca_result$x
+
+# Plot consumers on a two-dimensional map
+par(cex = 0.65)
+plot(scores[, 1], scores[, 2],
+     xlab = "High Service Expectations",
+     ylab = "Value Shopper",
+     main = "Consumer Map")
+text(scores[, 1], scores[, 2], 
+     labels = data$Resp, 
+     pos = 3)
+abline(h = 0, v = 0, col = "gray60")
+```
+
+
+
+\item Based on the plot from the previous answer, how many segments (roughly) do you find in the market? Hint: A segment is a group of consumers who are similar to each other in their tastes and preferences. (2 points)
+
+Based on the consumer map, there are three segments in the market. The first segment clusters in the upper right quadrant, with consumers who score high on both High Service Expectations and Value Shopper. The second segment clusters in the lower right quadrant, with consumers who score high on High Service Expectations but low on Value Shopper. The third segment falls on the left side of the map, representing consumers with low High Service Expectations regardless of their value orientation. Each segment represents a meaningfully distinct group of consumers with different attitudes toward service and price.
+
+
+
+\item Describe the characteristics of each segment. Discuss the relationship between the segment characteristics and the original attributes? 
+
+
+
+Segment 1 (High Service Expectations, High Value Shopper): This segment scores high on both factors. These consumers expect respectful and helpful service (X1 and X3) but also prefer discount stores and are indifferent to fancy displays (X4 and X5). They want decent service at a good price.
+
+
+Segment 2 (High Service Expectations, Low Value Shopper): This segment scores high on service expectations but low on value orientation. These consumers expect attentive and respectful service (X1 and X3) and also care about the store environment (X4 and X5). They are willing to pay more for a premium shopping experience and are the classic department store customer.
+
+
+Segment 3 (Low Service Expectations): This segment scores low on High Service Expectations. These consumers are not influenced by service quality — they find attentive salespeople irritating (X2) and do not need help when shopping (X1 and X3). They are largely indifferent to the service dimension and shop independently.
+
+
+\item Which segment do you expect to be the most profitable and why? Assuming the data to be representative, what is the size of this segment (in percentage)? (2 points)
+
+I believe Segment 1 is the most profitable segment. These consumers shop frequently at discount stores, are motivated by value (X4 and X5), and remain loyal as long as they receive basic respectful service (X1 and X3). Their combination of high shopping frequency and reasonable service expectations makes them the most reliable and consistent source of revenue. Segment 3, while large, is highly price sensitive and unlikely to generate strong margins. Segment 2, despite their willingness to spend more per visit, shops infrequently and selectively, limiting their overall profitability. Assuming the data is representative, Segment 1 accounts for approximately 8 out of 30 respondents, representing 27% of the market.
+
+
+\end{enumerate}
+
+# Instructions
+\begin{enumerate}
+\item Late assignments will automatically receive zero.
+\item The points for each question are shown next to it. The total is 15 points
+\item This is a group assignment. Only one person from the group should submit the assignment, but please list the names of all the group members in the first page of your submission.
+\item You are expected to write up the assignment using R Markdown (in the style of the handouts you were given for the in-class work). Please answer each question one by one. For each question, show the R commands you used and then briefly present any discussion/text that you want below it. Please submit the .Rmd file and the ‘knitted’ word document. You do not need to submit any data files. 
+\item If you have any questions or need any clarifications on the assignment, please post on your question on the discussion board for this assignment. I will try to answer it as soon as possible. If you see a question from another student that you know the answer to, please feel free to chip in. 
+\end{enumerate}

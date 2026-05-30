@@ -1,0 +1,132 @@
+---
+title: "Assignment 3: Product line pricing"
+author: "Ali Goli"
+date: "Spring B 2026, MKT 472"
+output: pdf_document
+urlcolor: blue
+graphics: yes
+---
+
+\setlength{\parskip}{6pt}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA, message = FALSE, 
+                      fig.width = 6, fig.height = 4.5, fig.align = "right")
+```
+
+## Overview of setting and data
+Your marketing-analytic consulting task is to conduct a base pricing analysis for P&G's flagship laundry detergent brand, Tide. The main questions to address are:
+
+1. What is the extent of cannibalization within the Tide product line? 
+2. Does Tide face a competitive threat from Wisk? 
+3. How do you evaluate the current pricing tactics? Do you recommend
+changes?
+
+You have access to scanner data in the laundry detergent category across 86 stores of a retail chain in Chicago. The data are in the file `Detergent.RData` (the file is available on Blackboard). The data include weekly sales and price information for three products --- Tide 128 oz, Tide 64 oz, Wisk 64 oz --- across the 86 stores. The data are available for up to 300 weeks (the exact number of weeks included in the data varies across stores). The variables in the data set are:
+
+-------------   -----------------------------------------------------
+`store`         Store id number
+`week`          Week
+`acv`           ACV (all commodity volume), in $1,000
+`promoflag`     = 1 if any product in the category was on promotion
+`q_tide128`     Tide 128 oz: unit sales
+`p_tide128`     Tide 128 oz: price ($)
+`q_tide64`      Tide 64 oz: unit sales
+`p_tide64`      Tide 64 oz: price ($)
+`q_wisk64`      Wisk 64 oz: unit sales
+`p_wisk64`      Wisk 64 oz: price ($)
+-------------   -----------------------------------------------------
+
+## Q1. Data description
+a. Report the revenue market shares of the three products (percentage of total sales revenue across all store-weeks), and report the mean, median, and standard deviation of prices for the three products across store-weeks. Make a table of these variables. (1 point)
+
+b. Then generate two new variables that capture the price gap (price difference) between (i) Tide 128oz and Tide 64oz, (ii) Tide 64oz and Wisk 64oz. Report the mean, median, and std. dev. of the two price gap variables across store-weeks. Make a table showing these statistics. (0.5 points)
+
+c. Provide histograms of the price gaps. (0.5 points)
+
+d. What do you learn from the price gap histograms and summary statistics for your analysis above? Is there enough variation in the price gaps across stores and weeks to estimate the cross price elasticities between the two Tide pack sizes and Wisk 64? (0.5 points)
+
+Hint: For Questions 1.a and 1.b, use the table formats given in the file `Assignment3Template.Rmd` to format your answers.
+
+## Q2. Demand estimation
+
+a. Construct the sales velocity for each of Tide 64 and Tide 128 as:
+$$\text{velocity}=\frac{\text{unit sales}}{\text{ACV}}.$$ (0.5 points)
+
+b. What is the purpose of dividing unit sales by ACV to construct the dependent variable? (1 point)
+
+c. Estimate log-linear demand models for the two Tide products by regressing the log of velocity on all the log prices (own and competing products).  (1 point)
+
+d. Discuss whether the demand estimates (own and cross price elasticities) make sense. Are the magnitudes and signs of the estimated parameters as you would expect? (1 point)
+
+## Q3. Time trend
+a. Re-estimate the log-linear demand models for the two Tide products including a time trend. A time trend is a variable that proxies for the progress of time. Here, you can use the `week` variable as a time trend. (1 point)
+
+b. Explain why adding a time trend is important here. Discuss whether the demand estimates now make sense. Is there an improvement over the model specification in question 2? (1 point)
+
+## Q4. Focus on non-promoted weeks
+
+In the data, weeks where at least one product was promoted are flagged by the dummy variable `promoflag`, where a value of 1 indicates a promoted week. 
+
+a. In what fraction of store-weeks was at least one of the detergents promoted? (Hint: Look at the summary statistics). (0.5 points)
+
+Now create a new data set that only includes store-weeks in which none of the products were promoted. Use the `subset` function that allows you to extract rows of data satisfying a specific condition. 
+
+```{r, eval=FALSE}
+detergent_DF_2 = subset(detergent_DF, promoflag != 1)
+```
+
+Here, `!=` means "not equal to", in contrast to `==` which means "equal to".
+
+b. Re-estimate the log-linear demand models with a time-trend for the two Tide products only using data from non-promoted store-weeks. Discuss whether the demand estimates (own and cross price elasticities) now make sense --- is there an improvement over the specification in question 3? Provide some intuition for the change in the estimated own-price effects. (1 point)
+
+## Q5. Store fixed effects
+
+a. Re-estimate the log-linear demand models for the two Tide products including a time trend and store fixed effects using the data for the non-promoted store-weeks. Do not display the coefficients for the fixed effects. Only show the intercept and coefficents for all the price elasticities and the time trend. (Hint 1: use the factor function in the linear regression instead of manually creating fixed effects for 86 stores. Hint 2: Use the broom and knitr packages to generate tables without all the fixed effects.) (1 point)
+
+b. Do the estimates of own and cross price elasticties reveal an improvement over the model specification in question 4? (1 point)
+
+c. Compare the estimates to a slightly different regression with the log of unit sales, not log of velocity, as dependent variable. How do the elasticity estimates and the time trend compare across these two regressions? Is the difference (or absence of a difference) as expected? (1 point)
+
+## Q6. Pricing and profitability analysis
+Tide's retail margin at Dominick's is 25 percent, and P&G's marginal cost of producing Tide laundry detergent is 2.7 cents per oz. 
+
+Hint: For the next four questions, you will need to use `mean()` function in R to get the mean of a column.
+
+a. Calculate **base (regular) prices**, using the data for the **non-promoted** store-weeks, as follows: 
+$$\text{base price of Tide 128 = mean of price of Tide 128 across non-promoted store/weeks.}$$ (0.5 points)
+
+b. Do a similar calculation for Tide 64. (0.5 points)
+
+c. Calculate the **base volume** as average yearly chain-level volume sales:
+$$\text{base volume of Tide 128 = no. of stores} \times 52 \times \text{mean sales of Tide 128}.$$ 
+Recall that there are 86 stores in the data set. (0.5 points)
+
+d. Do a similar calculation for Tide 64. (0.5 points)
+
+e. What is the average yearly base total profit for Tide (sum of profits for Tide 64 and Tide 128) (1 point)
+
+f. Calculate the total new expected volume of Tide, i.e. the new volume of the 128 oz and 64 oz products, from the following price changes: (2 points)
+
+    (1) A simultaneous 5 percent increase in the prices of Tide 128 and Tide 64
+    (2) A simultaneous 5 percent decrease in the prices of Tide 128 and Tide 64 
+    (3) A simultaneous 5 percent increase in the price of Tide 128 and 5 percent decrease in the price of Tide 64
+    (4) A simultaneous 5 percent decrease in the price of Tide 128 and 5 percent increase in the price of Tide 64
+
+g. Calculate the total new expected profits for each of the price changes in the Q6.f. Are the prices of Tide approximately optimal, or do you recommend changes to the product-line pricing of Tide? (1 point)
+
+Hint 1: Use the Table shown in `Assignment3Template.Rmd` to format your answers to questions Q6.f and Q6.g. However, please show all your analysis and intermediate steps, i.e., do not just fill out the Table. 
+
+Hint 2: To solve for questions Q6.f and Q6.g, you can take one of the two following approaches: 1) you can simply use a pen+paper+calculator and do the calculations like we did in class. (2) Or you could use R functions similar to those that you wrote for Assignment 3. Both approaches are fine. 
+
+## Q7. Summarize your findings on the main questions
+a. What is the extent of cannibalization within the Tide product line? (0.5 points)
+b. Does Tide face a competitive threat from Wisk? (0.5 points)
+c. How do you evaluate the current pricing tactics? Do you recommend changes? (0.5 points)
+
+## Instructions
+1. Late assignments will automatically receive a zero. 
+2. The points for each question are shown next to it. The total points is 20 points.
+3. Please submit your knitted pdf or word document. I have posted a template that gives you the Table format for Q1 and Q6 along with this assignment. It is called `Assignment3Template.Rmd` and it knits to word. 
+4. If you have any questions or need any clarifications on the assignment, please post on your question on the discussion board for this assignment. I or the TA will try to answer it as soon as possible. If you see a question from another student that you know the answer to, please feel free to chip in.
+ 

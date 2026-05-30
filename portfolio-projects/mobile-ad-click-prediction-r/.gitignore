@@ -1,0 +1,8 @@
+.Rhistory
+.RData
+.Rproj.user/
+data/
+*.RData
+*.csv
+*.xlsx
+*.html
