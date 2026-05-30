@@ -33,7 +33,7 @@ How can a marketer identify the highest-value mobile ad impressions and improve 
 ## Files
 
 - `mobile_ad_click_prediction.Rmd` - source analysis.
-- `assets/mobile_ad_click_prediction_report.docx` - knitted report.
+- `assets/mobile_ad_click_prediction_completed_report.pdf` - completed knitted report.
 - `assets/*.png` - generated model and exploratory visuals.
 
 ## Portfolio Note
