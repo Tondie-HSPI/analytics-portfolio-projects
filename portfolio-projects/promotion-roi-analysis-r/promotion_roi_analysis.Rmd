@@ -13,190 +13,286 @@ urlcolor: blue
 \setlength{\parskip}{6pt}
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, comment = NA, message = FALSE, 
+knitr::opts_chunk$set(echo = TRUE, comment = NA, message = FALSE,
                       fig.width = 6, fig.height = 4.5, fig.align = "right")
 ```
 
-\section*{Goal: Calculate ROI of Trade Promotions}
+## Part I: Promotional event planning
 
-The goal of this assignment is to help you beccome comfortable with performing ROI analysis for promotional events. In the process, you will learn how to assess the effectiveness of different promotional features (feature, display, TPRs), and evaluate the cost of retailers'  forward buying behavior and the potential gains from limiting this behavior. 
+### Question 1
 
-This assignment consists of two parts. 
-\begin{enumerate}
-\item Part I -- In the first part, you are given information on the promotional events planned by the manufcaturer of a baking product at Chicago's Jewel Osco retailer. You are given all the necessary information on the brand, events planned, and the promotion calendar. You asked to interpret this information and perform some additional ROI calculations using this information. This is similar to the in-class exercise we performed. You do not need to estimate anything from a dataset for this.
-\item Part II -- In the second part, you are asked to perform ROI calculations for promotions for Hellman's mayo. Hellman's is interested in estimating the ROI for their 32 oz. product at the account-level (this is at chain-level, not store-level) for two stores in Chicago -- Jewel-Osco and Dominicks. Here, you will need to use the dataset provided to calculate the incremental sales response from a promotional event and use that in the ROI calculation. 
-\end{enumerate}
+There is evidence of seasonal demand. Base cases are much higher for Events 1
+and 2 than for the later events. Event 1 has 728 base cases and Event 2 has
+1,360 base cases, while Events 3, 4, and 5 have 239, 449, and 333 base cases.
+This pattern suggests that the earlier promotional periods occur during stronger
+seasonal demand periods for the baking product.
 
-Note that the two parts of the assignment are not related in any way. They are two separate tasks and come with their separate own datasets/information.
+### Question 2
 
-\section{Part I: Promotional event planning}
-In the first part of the assignment, you are asked to examine the ROI of a baking product. Since the product is used for baking, its demand peaks during holiday periods. The manufacturer worked with Booz Allen Hamilton to develop a a spreadsheet, `Part1_Promotion_Planning.xlxs`. This spreadsheet provides a toolkit to help the manufacturer to plan a promotion calendar and evaluate the ROI of their promotional events. The three sheets in this excel document are described below.
+Event 2 has the greater incremental sales response. Event 1's incremental
+response is approximately 55 percent of base cases:
 
-\subsection{Brand Summary}
-The first sheet, `Brand Summary`, gives some basic information on the brands in this marketplace. This sheet lists the basic marketing facts for this product including the wholesale list price for a case (regular price per case paid by the retailer), variable contribution margin VCM (gross margin), and the base (regular) retail price. Of these, the main variable of interest for our analysis is the `Pre-Trade VCM` for the manufacturer's brand. This variable tells us the gross margin of a 24 pack case of the product when there are no trade promotions. That is, this is the profit that the manufacturer makes on one case. 
+$$401 / 728 = 55.1\%$$
 
-\subsection{Promotional Calendar}
-The `Promotion Calendar` sheet lists historical and planned values for Hellman's promotional activities. 
+Event 2's incremental response is approximately 69 percent of base cases:
 
-  * The `Historical %ACV` columns show the average of the past promotional events over the past few years. For example, in the past few years, in the week of Nov 13, 22 percent of Jewel stores (to be precise: percent ACV) had this product on feature and display, and 83 percent on feature alone. 
-  * The `Projected %ACV` columns show the five promotional events are planned for the next year and their respective lengths. We see that the length of these events varies from 2--3 weeks; e.g., event 1 is planned for three weeks in November, whereas event 3 is planned for two weeks in April. Further, we are also given details on the nature of the promotional event.  For example, event 3 is a 60 percent display and feature promotion with a promoted price of $1.99 in the first two weeks of April. 
+$$944 / 1360 = 69.4\%$$
 
-\subsection{Event Summary}
+Therefore, Event 2 produces the stronger incremental response relative to base
+sales.
 
-The `Event Summary` spreadsheet provides some analysis of the profitability of these five events. In order to understand this spreadsheet, note that:
+### Question 3
 
-* Incremental Contribution $=$ Incremental Consumed Cases $\times$
-VCM 
+Events 2 and 5 are the profitable events. Event 5 has the highest ROI at about
+53 percent, followed by Event 2 at about 44 percent. Event 1 is slightly
+unprofitable with an ROI of about -2 percent, and Events 3 and 4 are clearly
+unprofitable with ROIs of about -22 percent and -79 percent.
 
-* Variable Cost (consumed) $=$ Total Consumed Cases $\times$ Off-Invoice
-($4.20)
+The main lesson is that a promotion is not profitable just because it creates
+incremental volume. The event must generate enough incremental contribution to
+cover variable costs, MDF/fixed payments, and forward-buying costs. Event 5 is
+especially attractive because its incremental contribution is high relative to
+its event cost. Event 2 is also profitable because it combines strong baseline
+demand with a strong incremental response. Events 3 and 4 show that high costs
+or weak incremental response can make a promotion unattractive even when units
+increase.
 
-* Fixed Payment Cost $=$ MDF (market development funds for this event)
+### Question 4
 
-* Forward Buy Cost $=$ Forward Buy Cases $\times$ Off-Invoice 
+The recalculation for Events 1 and 2 under four weeks of forward buying is shown
+in the new workbook sheet named `Q4_Forward_Buy`. Increasing forward buying from
+two weeks to four weeks doubles the forward-buying cases from 229 to 458 for
+Events 1 and 2. That increases forward-buying cost from $962 to $1,924.
 
-* ROI $=$ 100 $\times$ Event Gross Contribution / Event Cost
+With four weeks of forward buying, Event 1 becomes more negative: event cost
+increases to $9,164, event gross contribution falls to -$1,145, and ROI falls
+to about -12.5 percent. Event 2 remains profitable but weaker: event cost rises
+to $14,098, event gross contribution falls to $4,776, and ROI falls to about
+33.9 percent. This shows that forward buying can materially reduce promotion
+profitability because it increases manufacturer cost without increasing
+consumer demand.
 
+### Question 5
 
-**Note**: This approach differs slightly from the approach we discussed in class. In particular, in the Booz Allen Hamilton approach the incremental contribution is calculated using the original, non-promoted VCM, but the variable cost also includes the reduced margin on the incremental units sold. Hence, the event gross contribution will be unaffected, but the ROI will be different because the denominator (the event cost) will also include the "cost" incurred on the incremental units sold.
+The Booz Allen Hamilton approach is more conservative because it includes more
+promotion-related costs in the denominator. The class method is easier to
+interpret when the goal is to isolate incremental profitability from the
+promotion. I would use the class method for comparing event effectiveness and
+the Booz Allen approach as a conservative financial check. Together, they show
+both demand impact and cost exposure.
 
+## Part II: Estimating lift factors and promotion ROI analysis for Hellman's Mayo
 
-\subsection{Questions}
-
-Using the information in the `Part1_Promotion_Planning.xlxs` spreadsheet, please answer the following questions about the promotional events and their profitability. 
-
-1. Is there evidence for strong seasonal demand for this product, based on the figures presented in the `Event Summary` sheet? (1 point)
-
-2. Expressed as a percentage of base sales, what is the incremental sales response of events 1 or event 2? Which event produces a greater incremental sales response? (1 point)
-
-3. Using the information in the `Event Summary` sheet, discuss the profitability results for the five events. Which events are most profitable and why? What can you learn from this analysis about what sorts of promotional events are most profitable? (1 point)
-
-4. Recalculate the profitability for event 1 and 2 assuming that retailers will engage in 4 weeks rather than 2 weeks of forward buying. Show your calculations using a calculation in a table similar to the "Manufacturer's Promotion Profit and Loss" calculation in the `Event Summary` sheet. 
-
-To help with this, simply create a new excel sheet in the document and show the Profit & Loss analysis under the new assumption. When submitting your assignment, please submit the updated version of `Part1_Promotion_Planning.xlxs`, with the additional excel sheet with answers for Q4. (1 point)
-
-5. Compare the approach used for calculating the ROI here (i.e., the Booz Allen Hamilton approach taken here) compared to the approach we used in class. Recall that the difference between the two approaches was explained above. Is one of the approaches better than the other, and why? (1 point)
-
-\section{Part II: Estimating lift factors and promotion ROI analysis for Hellman's Mayo}
-
-In Part I of the assignment, you were directly given information on the incremental sales expected from different promotional events. In this part of the assignment, you will be need to do demand forecasting and perform the ROI analysis from scratch. Thus, you will need to use data to estimate the baseline demand and incremental response. Specifically, you are now asked to analyze the effectiveness and ROI of different promotions for Hellman's 32 oz Mayonnaise. The analysis is based on account level data at Jewel-Osco and Dominick's Finer Foods in Chicago. 
-
-For this analysis, you are given two documents: (1) A data frame `hellmans_DF` in the file `Hellmans.RData`, and (2) a excel spreadsheet to help with ROI calculations in questions 3, 4 and 5, `Part2_HellmansROI.xlxs`. The dataframe `hellmans_DF` contains the following variables: 
-
-* `account`
-* `product`
-* `week`
-* `sales_units`
-* `sales_dollars`
-* `feature_pctacv`
-* `display_pctacv`
-
-\subsection{Questions}
-
-\subsubsection*{Question 1: Import data, generate necessary variables, and obtain summary statistics.}
-
-  a. Create a `price` variable for Hellman's 32oz mayo. (0.5 points)
-
-```{r}
+```{r load-data}
 load("Hellmans.RData")
 
-hellmans_DF$price = hellmans_DF$sales_dollars / hellmans_DF$sales_units
+hellmans_DF$price <- hellmans_DF$sales_dollars / hellmans_DF$sales_units
+hellmans_DF$feature_pctacv <- hellmans_DF$feature_pctacv / 100
+hellmans_DF$display_pctacv <- hellmans_DF$display_pctacv / 100
 
+dominicks <- subset(hellmans_DF, account == "Dominicks")
+jewel <- subset(hellmans_DF, account == "Jewel")
 ```
 
+### Question 1(c)
 
-  b. Then, divide the feature and display variables by 100 to get the %ACV feature and display variables. Hint: Instead of creating a new variable name you can use the following expression: (0.5 points)
-$$
-\textrm{hellmans\_DF\$feature\_pctacv = hellmans\_DF\$feature\_pctacv/100}
-$$
-```{r}
-hellmans_DF$feature_pctacv = hellmans_DF$feature_pctacv / 100
-hellmans_DF$display_pctacv = hellmans_DF$display_pctacv / 100
+The feature and display variables are summarized separately by account below.
+
+```{r q1c-summary}
+summary(dominicks[, c("feature_pctacv", "display_pctacv")])
+summary(jewel[, c("feature_pctacv", "display_pctacv")])
 ```
 
-  c. Now examine the display and feature variables. Provide summary statistics and histograms of these variables for both accounts separately. To what extent do these two promotional instruments (feature and display) differ? (0.5 points)
-  
-```{r}
-summary(hellmans_DF$feature_pctacv)
-summary(hellmans_DF$display_pctacv)
-
-hist(hellmans_DF$feature_pctacv)
-hist(hellmans_DF$display_pctacv)
+```{r q1c-histograms, fig.width=8, fig.height=6}
+par(mfrow = c(2, 2))
+hist(dominicks$feature_pctacv, main = "Dominick's Feature",
+     xlab = "Feature %ACV", col = "lightblue")
+hist(dominicks$display_pctacv, main = "Dominick's Display",
+     xlab = "Display %ACV", col = "lightgreen")
+hist(jewel$feature_pctacv, main = "Jewel Feature",
+     xlab = "Feature %ACV", col = "lightblue")
+hist(jewel$display_pctacv, main = "Jewel Display",
+     xlab = "Display %ACV", col = "lightgreen")
+par(mfrow = c(1, 1))
 ```
 
-Looking at the summary statistics and histograms, feature and display promotions behave pretty differently. Feature seems to happen more consistently, while display is more uneven and often zero. That tells me display is used more selectively, probably when they really want to push the product. Feature feels more like a baseline promotional tool, while display is more of a boost on top of that.
+Feature is mostly zero and behaves more like an on/off promotional support
+variable. When feature occurs, it often appears as a full feature event rather
+than a smooth continuous variable. Display is more continuous, with a wider
+range of values between zero and high display support. Jewel has more display
+activity on average than Dominick's, and both accounts show that display varies
+more continuously than feature.
 
+### Question 1(d)
 
-  d. Calculate the correlations between `display_pctacv`, `feature_pctacv`, and `price` (use the `cor` function in R). Comment on your findings. Are promotional activities (display, feature, and TPRs) correlated? How and why? (0.5 points)
-  
-```{r}
-cor(hellmans_DF[, c("feature_pctacv", "display_pctacv", "price")])
-```
-The correlations show that feature and display are positively related, which makes sense because they’re often used together during promotions. Price is negatively related to both, which also makes sense since promotions usually involve lowering the price. Overall, it looks like these promotional tools are coordinated rather than used independently.  
-
-
-\subsubsection*{Question 2: Estimate log-linear demand models.}
-
-  a. First, estimate a log-linear demand model separately for each account, using `price` as the only explanatory variable. 
-
-```{r}
-model1 = lm(log(sales_units) ~ log(price), data = hellmans_DF)
-summary(model1)
+```{r q1d-correlations}
+cor(dominicks[, c("display_pctacv", "feature_pctacv", "price")])
+cor(jewel[, c("display_pctacv", "feature_pctacv", "price")])
 ```
 
+Feature and display are positively correlated in both accounts, which suggests
+that promotional tools are often coordinated. Price is negatively correlated
+with feature and display because promotions usually combine support activity
+with lower prices.
 
-  b. Then add the feature and display variables. Comment on the difference between the two regressions in terms of goodness of fit, and the price elasticity estimates. Is the change in price elasticity estimates as expected? Why? --- Are the coefficient estimates
-similar for both accounts?
+### Question 2
 
-```{r}
-model2 = lm(log(sales_units) ~ log(price) + feature_pctacv + display_pctacv, data = hellmans_DF)
-summary(model2)
+The regressions are estimated separately for Dominick's and Jewel.
+
+```{r q2-models}
+dom_price_model <- lm(log(sales_units) ~ log(price), data = dominicks)
+dom_full_model <- lm(log(sales_units) ~ log(price) + feature_pctacv + display_pctacv,
+                     data = dominicks)
+
+jewel_price_model <- lm(log(sales_units) ~ log(price), data = jewel)
+jewel_full_model <- lm(log(sales_units) ~ log(price) + feature_pctacv + display_pctacv,
+                       data = jewel)
+
+summary(dom_price_model)
+summary(dom_full_model)
+summary(jewel_price_model)
+summary(jewel_full_model)
 ```
 
+For Dominick's, the price-only model estimates a strong negative price
+elasticity. When feature and display are added, the price coefficient becomes
+less negative because part of the sales response that looked like a price effect
+was actually due to coordinated feature and display support. In the full
+Dominick's model, price, feature, and display are statistically significant.
 
-\subsubsection*{Question 3: Estimate Lift Factors for Promotions.}
-  
-Consider the following three promotions: (a) 15% TPR, (b) 15% TPR, 70% display, and (c) 15% TPR, 70% display, 100% feature. 
+For Jewel, the price-only model also estimates a strong negative price
+elasticity. In the full model, price and display are statistically significant,
+but feature is not. This means the feature coefficient should be set to zero
+when calculating lift factors for Jewel.
 
-  a. For each of the three promotions, calculate the lift factors for both accounts, based on the regression estimates in Q2b. (Set estimates that are not statistically significant $=0$.) Perform this analysis and show the results in the first sheet, `ROI_Q3_Q4` of the excel document `Part2_HellmansROI.xlxs`. (2 points)
-  
-```{r}
-lift_tpr = exp(-0.15 * -3.90654)
-price_coef = -3.90654
-display_coef = 1.06818
+### Question 3
 
-lift_tpr = exp(-0.15 * price_coef)
+Lift factors are calculated separately by account using the account-specific
+full regressions from Question 2. Coefficients that are not statistically
+significant at the 5 percent level are set to zero.
 
-lift_display = exp(-0.15 * price_coef + 0.7 * display_coef)
+The correct TPR effect uses the log price change:
 
-lift_full = lift_display
+$$\exp(\beta_{price} \times \log(0.85))$$
 
+not `exp(-0.15 * beta)`.
+
+```{r q3-lift-factors}
+sig_coefs <- function(model) {
+  model_sum <- summary(model)
+  coefs <- coef(model)
+  pvals <- model_sum$coefficients[, 4]
+  coefs[pvals[names(coefs)] >= 0.05 & names(coefs) != "(Intercept)"] <- 0
+  coefs
+}
+
+lift_table <- function(model) {
+  coefs <- sig_coefs(model)
+  price_effect <- coefs["log(price)"] * log(0.85)
+  display_effect <- coefs["display_pctacv"] * 0.70
+  feature_effect <- coefs["feature_pctacv"] * 1.00
+
+  data.frame(
+    Promotion = c("15% TPR", "15% TPR + 70% Display",
+                  "15% TPR + 70% Display + 100% Feature"),
+    Lift = c(
+      exp(price_effect),
+      exp(price_effect + display_effect),
+      exp(price_effect + display_effect + feature_effect)
+    )
+  )
+}
+
+dom_lifts <- lift_table(dom_full_model)
+jewel_lifts <- lift_table(jewel_full_model)
+
+dom_lifts
+jewel_lifts
 ```
 
+Dominick's has lift factors of approximately 1.35 for TPR alone, 2.42 for TPR
+plus display, and 3.22 for TPR plus display plus feature. Jewel has lift factors
+of approximately 1.36 for TPR alone and 2.88 for the two display-supported
+promotions. Jewel's feature coefficient is not statistically significant, so
+the full feature/display promotion has the same lift as the display-only
+promotion.
 
+### Question 4
 
-\subsubsection*{Question 4: Perform ROI analysis.}
+The workbook `Part2_HellmansROI_amended.xlsx` contains the ROI calculations for
+all three promotions for Dominick's and Jewel in the `ROI_Q3_Q4` sheet. The
+calculations use account-specific regressions, account-specific lift factors,
+and account-specific baseline units.
 
-Now perform the ROI all the three promotions considered in Question 3 for the two accounts, Dominick's and Jewel. The promotions last for one week. Your analysis should follow the approach that we took in class, not the version of this approach taken by Booz Allen Hamilton in the first part of the assignment. 
+```{r q4-roi-functions}
+baseline_units <- function(model) {
+  coefs <- coef(model)
+  sigma2 <- summary(model)$sigma^2
+  exp(coefs["(Intercept)"] + coefs["log(price)"] * log(1.20) + sigma2 / 2)
+}
 
-**Note**: For this question, perform the analysis using units, not cases of Hellman's mayo.
+roi_table <- function(model, account_name, fixed_display, fixed_full,
+                      forward_buy_pct = 0.50) {
+  lifts <- lift_table(model)$Lift
+  base_units <- as.numeric(baseline_units(model))
+  base_price <- 1.20
+  promoted_price <- base_price * 0.85
+  tpr_allowance <- base_price - promoted_price
+  regular_vcm <- 0.55
+  promoted_margin <- regular_vcm - tpr_allowance
+  fixed_costs <- c(0, fixed_display, fixed_full)
 
-You will need the following data for your analysis:
+  total_units <- base_units * lifts
+  incremental_units <- total_units - base_units
+  forward_buy_units <- base_units * forward_buy_pct
+  incremental_contribution <- promoted_margin * incremental_units
+  variable_cost <- tpr_allowance * base_units
+  forward_buy_cost <- tpr_allowance * forward_buy_units
+  event_cost <- variable_cost + fixed_costs + forward_buy_cost
+  gross_contribution <- incremental_contribution - event_cost
+  roi <- 100 * gross_contribution / event_cost
 
-* The regular price of the product at both accounts is $1.20.
+  data.frame(
+    Account = account_name,
+    Promotion = lift_table(model)$Promotion,
+    Baseline_Units = base_units,
+    Lift = lifts,
+    Incremental_Units = incremental_units,
+    Event_Cost = event_cost,
+    Gross_Contribution = gross_contribution,
+    ROI = roi
+  )
+}
 
-* The VCM for Hellman's is $0.55 per unit.
+dom_roi <- roi_table(dom_full_model, "Dominick's", 3000, 4500, 0.50)
+jewel_roi <- roi_table(jewel_full_model, "Jewel", 5000, 6800, 0.50)
 
-* The manufacturer fully pays for the shelf price reduction. E.g., if the shelf price is reduced from $1.20 to $1.00, the manufacturer pays for this TPR through a $0.20 per unit (off-invoice) allowance.
+dom_roi
+jewel_roi
+```
 
-*  The fixed cost (MDF) for the promotion involving display only is $3,000 at Dominick's and $5,000 at Jewel-Osco. The fixed cost for the promotion including feature and display is $4,500 at Dominick's and $6,800 at Jewel-Osco.
+### Question 5
 
-* In each promotion, assume that retailers engage in forward buying by buying 50% of the baseline units.
+```{r q5-no-forward-buy}
+dom_roi_no_fb <- roi_table(dom_full_model, "Dominick's", 3000, 4500, 0)
+jewel_roi_no_fb <- roi_table(jewel_full_model, "Jewel", 5000, 6800, 0)
 
-In order to estimate baseline sales, use the regression estimates and the regular price, and predict sales for display and feature $=0$. Using these data, and the lift factors found in answer to Q3, you can then fill in the cells in the first sheet of `Part2_HellmansROI.xlxs` (`ROI_Q3_Q4`). Do this for each of the three promotions at both accounts. (2 points)
+dom_roi_no_fb
+jewel_roi_no_fb
+```
 
-\subsubsection*{Question 5: Recommendation.}
+The 15 percent TPR-only promotion has the lowest ROI because it creates lift but
+does not generate enough incremental contribution relative to the cost of the
+price reduction and forward buying. The display-supported promotion is stronger
+because display creates a much larger sales response. At Dominick's, the full
+feature/display promotion is strongest because feature is statistically
+significant and adds lift. At Jewel, the full feature/display promotion is less
+attractive because feature is not statistically significant, so the added fixed
+cost is not offset by additional lift.
 
-  a. Based on your analysis in Q4, discuss the profitability of each of the three promotions at both the accounts. Which promotions are profitable and why? (1 point)
-  
-  b. To what extent is the profitability of these promotions undermined by retailers' forward buying behavior? To answer this question, redo the analysis in Q4 under the assumption you can eliminate forward buying. Does that change the profitability of previously unprofitable promotions? If so, for which promotions and to what extent? (To perform the analysis for this question, use the second sheet (`ROI_Q5`) in the excel spreadsheet `Part2_HellmansROI.xlxs`.) (1 point)
+Eliminating forward buying improves ROI for all promotions because it removes a
+cost that does not increase consumed units. However, it does not change the main
+ranking of promotions. The biggest lesson is that promotion profitability
+depends on both demand response and cost structure. Strong lift is valuable only
+when the added contribution is large enough to cover TPR costs, MDF/fixed
+payments, and forward-buying costs.

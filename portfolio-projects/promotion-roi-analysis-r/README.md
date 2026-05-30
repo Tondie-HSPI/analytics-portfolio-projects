@@ -18,9 +18,9 @@ Which promotion tactics create profitable incremental sales, and how much does r
 ## Methods
 
 - Created price and promotion variables from account-level sales data.
-- Estimated log-linear demand models.
+- Estimated log-linear demand models separately for Dominick's and Jewel.
 - Compared temporary price reduction, display, and feature/display promotion scenarios.
-- Calculated lift factors from model coefficients.
+- Calculated account-specific lift factors from statistically significant model coefficients.
 - Evaluated promotion ROI with and without forward buying.
 
 ## Key Findings
@@ -28,13 +28,15 @@ Which promotion tactics create profitable incremental sales, and how much does r
 - Price reductions, display support, and feature support affect demand differently.
 - Display and feature activity should be evaluated as coordinated promotion tools, not isolated tactics.
 - Forward buying can materially weaken promotion profitability.
+- Account-specific regressions matter because Dominick's and Jewel have different promotion response and cost structures.
 - Promotion recommendations should consider both incremental demand and total event cost.
 
 ## Files
 
 - `promotion_roi_analysis.Rmd` - source analysis.
-- `assets/promotion_roi_analysis_report.docx` - knitted report.
+- `assets/part1_promotion_planning_amended.xlsx` - Part I workbook with a dedicated `Q4_Forward_Buy` sheet.
+- `assets/part2_hellmans_roi_amended.xlsx` - Part II workbook with account-specific lift factors and ROI calculations.
 
 ## Portfolio Note
 
-The source dataset and course workbook are not included in this public version. The repository preserves the analytical workflow and business interpretation.
+The source dataset is not included in this public version. The repository preserves the corrected analytical workflow, business interpretation, and amended workbook outputs.
