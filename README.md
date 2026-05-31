@@ -36,7 +36,7 @@ Folder: `portfolio-projects/consumer-segmentation-pca-r`
 
 ### SQL Database Design Portfolio
 
-Shows relational database modeling and SQL query examples for business-style expense analysis.
+Shows MySQL query development, relational modeling, data warehouse design, ETL-style transformations, and business reporting queries.
 
 Folder: `portfolio-projects/sql-database-design-portfolio`
 
