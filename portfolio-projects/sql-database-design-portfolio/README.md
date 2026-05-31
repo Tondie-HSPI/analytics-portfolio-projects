@@ -27,12 +27,8 @@ How can operational databases be structured, queried, and transformed into analy
 ## Files
 
 - `portfolio_queries.sql` - curated SQL portfolio file covering safety analysis, expense warehousing, and film-rental performance analysis.
-- `assets/cis467_hw1_database_design.pdf` - submitted database design homework.
-- `assets/cis467_hw2_sql_queries.pdf` - submitted SQL query homework.
-- `assets/cis467_hw3_expense_data_warehouse.pdf` - submitted expense data warehouse homework.
-- `assets/cis467_final_project_film_data_warehouse.pdf` - submitted final project report.
-- `assets/mysql_workbench_model.mwb` - MySQL Workbench model file.
+- `assets/mysql_workbench_model.mwb` - MySQL Workbench model file supporting the database design work.
 
 ## Portfolio Note
 
-The public SQL file is curated for readability and review. Instructor scripts, packaged datasets, screenshots, and private course materials are not redistributed beyond submitted report PDFs. The project demonstrates the workflow: inspect source schemas, design analytics tables, write SQL transformations, and answer business questions from warehouse outputs.
+The public version is curated for readability and review. Instructor prompts, packaged datasets, and submitted course PDFs are intentionally omitted so the repository focuses on portfolio-ready evidence of the work: schema design, SQL transformations, warehouse-style tables, and business reporting queries.

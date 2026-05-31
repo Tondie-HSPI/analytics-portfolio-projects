@@ -43,3 +43,5 @@ Folder: `portfolio-projects/sql-database-design-portfolio`
 ## Notes
 
 Original source datasets are omitted where they are private, academic, or not appropriate for public redistribution. Each project includes a data note and a README explaining the analysis workflow, methods, and business value.
+
+Instructor prompts, packaged classroom materials, and older submitted PDFs are intentionally omitted from the public portfolio. The repository is organized around curated analysis files, SQL/R code, corrected work products, and business-facing summaries.

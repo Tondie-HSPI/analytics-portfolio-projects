@@ -32,8 +32,7 @@ When products compete with one another, how should a manager evaluate whether a 
 ## Files
 
 - `multiproduct_profitability_analysis.Rmd` - corrected portfolio analysis.
-- `assets/multiproduct_profitability_analysis_original_report.pdf` - original submitted report before the Q4a/Q5 correction.
 
 ## Portfolio Note
 
-This project uses a provided demand system rather than a private dataset, so no source data file is required.
+This project uses a provided demand system rather than a private dataset, so no source data file is required. The public version keeps the corrected portfolio analysis and omits the older submitted report to avoid presenting outdated coursework artifacts.
