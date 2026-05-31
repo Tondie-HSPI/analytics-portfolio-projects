@@ -34,9 +34,7 @@ How should a brand evaluate cannibalization, competitive threat, and pricing cha
 ## Files
 
 - `product_pricing_elasticity.Rmd` - public portfolio summary and representative workflow.
-- `assets/product_pricing_elasticity_completed_report.pdf` - completed submitted report.
-- `assets/product_pricing_elasticity_completed_report.docx` - editable completed report.
 
 ## Portfolio Note
 
-The source dataset is not included in this public version. The completed report is included so reviewers can see the finished analysis, model interpretation, and business recommendation work.
+The source dataset, instructor prompt, and submitted course report are not included in this public version. The portfolio README and R Markdown file highlight the finished analysis approach, model interpretation, and business recommendation work.
