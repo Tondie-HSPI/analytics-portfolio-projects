@@ -2,17 +2,19 @@
 
 This repository contains curated analytics projects that demonstrate R, SQL, statistical modeling, database design, and business recommendation skills.
 
+The portfolio is framed around operational decision support: using analysis to clarify pricing, promotion, segmentation, profitability, and reporting questions that would otherwise require manual interpretation across messy or incomplete business information.
+
 ## Projects
 
 ### Mobile Ad Click Prediction in R
 
-Uses CART and XGBoost to predict mobile ad click behavior, evaluate model performance, and recommend a higher-ROI targeting strategy.
+Uses CART and XGBoost to predict mobile ad click behavior, evaluate model performance, and support a higher-ROI targeting decision.
 
 Folder: `portfolio-projects/mobile-ad-click-prediction-r`
 
 ### Promotion ROI Analysis in R
 
-Evaluates temporary price reductions, display support, feature support, lift factors, and forward buying in a trade promotion setting.
+Evaluates temporary price reductions, display support, feature support, lift factors, and forward buying to clarify promotion tradeoffs and reduce guesswork in ROI review.
 
 Folder: `portfolio-projects/promotion-roi-analysis-r`
 
@@ -36,7 +38,7 @@ Folder: `portfolio-projects/consumer-segmentation-pca-r`
 
 ### SQL Database Design Portfolio
 
-Shows MySQL query development, relational modeling, data warehouse design, ETL-style transformations, and business reporting queries.
+Shows MySQL query development, relational modeling, data warehouse design, ETL-style transformations, and business reporting queries that turn scattered operational data into structured reporting outputs.
 
 Folder: `portfolio-projects/sql-database-design-portfolio`
 
