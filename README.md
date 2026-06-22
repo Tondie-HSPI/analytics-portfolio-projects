@@ -52,5 +52,6 @@ Instructor prompts, packaged classroom materials, and older submitted PDFs are i
 
 This portfolio focuses on R/SQL analytics work from coursework. For applied AI and workflow-automation projects, see:
 
-- [business-review-ai-orchestration](https://github.com/Tondie-HSPI/business-review-ai-orchestration) — AI-assisted insurance application review workflow (flagship project)
-- [compliance-explained-ai](https://github.com/Tondie-HSPI/compliance-explained-ai) — earlier prototype, retired/legacy
+- [Coverage Clarity](https://github.com/Tondie-HSPI/Coverage-Clarity) — AI-assisted insurance document review and decision-support workflow.
+- [Northbridge Policy Assistant](https://github.com/Tondie-HSPI/northbridge-policy-assistant) — controlled RAG-based policy assistant with source grounding and escalation boundaries.
+- [Role-Aware AI Orchestration](https://github.com/Tondie-HSPI/Role-Aware-AI-Orchestration) — architectural framework for governed, role-aware AI systems.
