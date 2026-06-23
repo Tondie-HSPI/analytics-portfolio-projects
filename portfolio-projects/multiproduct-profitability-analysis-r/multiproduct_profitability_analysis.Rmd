@@ -26,7 +26,7 @@ Further, the base prices of three products are given as: $P_1 = \$2$, $P_2 = \$1
 
    1. What are the own price elasticites of the three products? (0.5 points)
    
-   The own-price elasticity is the exponent on each productâ€™s own price in the demand function.
+   The own-price elasticity is the exponent on each product's own price in the demand function.
 
 Product 1: -2.5
 Product 2: -1.5
@@ -74,7 +74,7 @@ Demand for product 1 goes down. Its price increases by 5%, and since its own-pri
 
 Product 2
 
-Demand for product 2 decreases slightly. Its own price doesnâ€™t change, so thereâ€™s no direct effect from that. When product 1â€™s price increases, it should help product 2 a bit since the cross-price elasticity is positive (0.7). But product 3â€™s price drops, and since product 2 also has a positive cross-price elasticity with product 3 (0.5), product 3 becomes more attractive and takes demand away. The impact from product 3 is stronger overall, so demand for product 2 ends up decreasing a little.
+Demand for product 2 decreases slightly. Its own price doesn't change, so there's no direct effect from that. When product 1's price increases, it should help product 2 a bit since the cross-price elasticity is positive (0.7). But product 3's price drops, and since product 2 also has a positive cross-price elasticity with product 3 (0.5), product 3 becomes more attractive and takes demand away. The impact from product 3 is stronger overall, so demand for product 2 ends up decreasing a little.
 
 Product 3
 
@@ -168,7 +168,7 @@ Product 3
 
 Profit for product 3 drops the most. Its lower price does increase demand, but the price cut hurts profit per unit a lot. Since the marginal cost is already fairly high relative to the original price, cutting the price leaves much less profit on each unit sold. The increase in quantity is not large enough to make up for that, so total profit falls significantly.
 
-Is product 3â€™s price cut justified?
+Is product 3's price cut justified?
 
 Based on these numbers, no. Even though demand increases, profit still drops by a lot. That means the extra sales do not make up for the lower profit earned on each unit.
 

@@ -8,7 +8,7 @@ output: html_document
 
 This project analyzes scanner-style retail data for Tide 128 oz, Tide 64 oz, and Wisk 64 oz detergent products. The goal is to evaluate market share, price gaps, demand sensitivity, cannibalization within the Tide product line, and competitive pressure from Wisk.
 
-The completed portfolio report is included in the `assets` folder. The original source dataset is omitted from this public version.
+The original source dataset and completed course report are omitted from this public version. This R Markdown file preserves the portfolio summary, representative workflow, model interpretation, and business recommendation logic.
 
 ## Business Questions
 
@@ -72,6 +72,6 @@ model_tide64 <- lm(
 
 ## Portfolio Files
 
-- `assets/product_pricing_elasticity_completed_report.pdf` - completed submitted report.
-- `assets/product_pricing_elasticity_completed_report.docx` - editable completed report.
 - `product_pricing_elasticity.Rmd` - public portfolio summary and representative workflow.
+- `README.md` - project overview, business question, methods, and portfolio note.
+- `data_README.md` - public data note explaining why the source dataset is omitted.
